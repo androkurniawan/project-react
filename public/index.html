@@ -24,7 +24,72 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Oracle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <Style>
+      .main-nav{
+          background-color: #003566;
+      }
+      .main-nav .navbar-nav a.nav-link{
+          color: white;
+          font-weight: 600;
+      }
+      .main-nav .navbar-nav .nav-link.active, .main-nav .navbar-nav
+      .nav-link:hover {
+          color: #ffc300;
+      }
+      .searching h2 span{
+          color:#ffc300
+      }
+      .main-biru {
+          background-color: #003566;
+          color:white;
+      }
+      .navbar.scrolled {
+          background-color: white;
+          transition: background-color 0.75s ease;
+          box-shadow: 0px -10px 30px #666;
+      }
+      .navbar.scrolled a.nav-link {
+          color: #666;
+      }
+      /* Horizontal Line */
+      .divider {								/* minor cosmetics */
+          display: table; 
+          font-size: 24px; 
+          text-align: center; 
+          width: 75%; 						/* divider width */
+          margin: 40px auto;					/* spacing above/below */
+      }
+      .divider span { display: table-cell; position: relative; }
+      .divider span:first-child, .divider span:last-child {
+          width: 50%;
+          top: 19px;							/* adjust vertical align */
+          -moz-background-size: 100% 2px; 	/* line width */
+          background-size: 100% 2px; 			/* line width */
+          background-position: 0 0, 0 100%;
+          background-repeat: no-repeat;
+      }
+      .divider span:first-child {				/* color changes in here */
+          background-image: -webkit-gradient(linear, 0 0, 0 100%, from(transparent), to(#000));
+          background-image: -webkit-linear-gradient(180deg, transparent, #000);
+          background-image: -moz-linear-gradient(180deg, transparent, #000);
+          background-image: -o-linear-gradient(180deg, transparent, #000);
+          background-image: linear-gradient(90deg, transparent, #000);
+      }
+      .divider span:nth-child(2) {
+          color: #000; padding: 0px 5px; width: auto; white-space: nowrap;
+      }
+      .divider span:last-child {				/* color changes in here */
+          background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000), to(transparent));
+          background-image: -webkit-linear-gradient(180deg, #000, transparent);
+          background-image: -moz-linear-gradient(180deg, #000, transparent);
+          background-image: -o-linear-gradient(180deg, #000, transparent);
+          background-image: linear-gradient(90deg, #000, transparent);
+      }
+
+    </Style>
+    
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -39,5 +104,7 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script src="https://cdn.jsdelivr.net/npm/react-bootstrap@next/dist/react-bootstrap.min.js" crossorigin></script>
+
   </body>
 </html>
