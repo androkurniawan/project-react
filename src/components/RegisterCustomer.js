@@ -16,8 +16,6 @@ function RegisterCustomer() {
 
         </MDBCol>
 
-        {/* <MDBCol md='1'>  </MDBCol> */}
-
         <MDBCol md='4'>
 
           <MDBCard className='my-4'>
@@ -44,15 +42,15 @@ function RegisterCustomer() {
 
                 <p>or sign up with:</p>
 
-                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
+                <MDBBtn tag='a' href='http://www.facebook.com' color='none' className='mx-3' style={{ color: '#1266f1' }}>
                   <MDBIcon fab icon='facebook-f' size="sm"/>
                 </MDBBtn>
 
-                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
+                <MDBBtn tag='a' color='none' href='http://www.twitter.com' className='mx-3' style={{ color: '#1266f1' }}>
                   <MDBIcon fab icon='twitter' size="sm"/>
                 </MDBBtn>
 
-                <MDBBtn tag='a' color='none' className='mx-3' style={{ color: '#1266f1' }}>
+                <MDBBtn tag='a' href='https://accounts.google.com/v3/signin/identifier?dsh=S-2096941787%3A1671854281143008&hl=id&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=AeAAQh6phgv47elB6puOnrIIoRwtwzJsT4q5p-0gc0g_6ZHQ2CM3dxNCBocL4ZfShTZaj1Uu66Mz' color='none' className='mx-3' style={{ color: '#1266f1' }}>
                   <MDBIcon fab icon='google' size="sm"/>
                 </MDBBtn>
 

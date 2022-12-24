@@ -1,7 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  }
+
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  }
+
+  
+  
   return (
     <MDBContainer className="p-5 my-5 h-custom">
 
@@ -13,15 +26,15 @@ function Login() {
 
             <p style={{color: "#ffc300"}} className="lead fw-bold mb-0 me-3">Sign in with</p>
 
-            <MDBBtn color="none" floating size='md' tag='a' className='me-2'>
+            <MDBBtn color="none" floating size='md' tag='a' href='http://www.facebook.com' className='me-2'>
               <MDBIcon fab icon='facebook-f' size="md" />
             </MDBBtn>
 
-            <MDBBtn color="none" floating size='md' tag='a'  className='me-2'>
+            <MDBBtn color="none" floating size='md' tag='a' href='http://www.twitter.com'  className='me-2'>
               <MDBIcon fab icon='twitter' size="md" />
             </MDBBtn>
 
-            <MDBBtn color="none" floating size='md' tag='a'  className='me-2'>
+            <MDBBtn color="none" floating size='md' tag='a' href='https://accounts.google.com/v3/signin/identifier?dsh=S-2096941787%3A1671854281143008&hl=id&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=AeAAQh6phgv47elB6puOnrIIoRwtwzJsT4q5p-0gc0g_6ZHQ2CM3dxNCBocL4ZfShTZaj1Uu66Mz' className='me-2'>
               <MDBIcon fab icon='google' size='md'/>
             </MDBBtn>
 
@@ -31,8 +44,8 @@ function Login() {
             <p className="text-center fw-normal mx-5 mb-0">or</p>
           </div>
           
-          <MDBInput wrapperClass='mb-3' label='Email address' id='formControlLg' type='email' size="md"/>
-          <MDBInput wrapperClass='mb-3' label='Password' id='formControlLg' type='password' size="md"/>
+          <MDBInput onChange={handleChangeEmail} wrapperClass='mb-3' label='Email address' id='formControlLg' type='email' size="md"/>
+          <MDBInput onChange={handleChangePassword} wrapperClass='mb-3' label='Password' id='formControlLg' type='password' size="md"/>
 
           <div className="d-flex justify-content-between mb-4">
             <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />
