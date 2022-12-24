@@ -1,19 +1,53 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
+import {useNavigate} from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+  const navigate = useNavigate();
+
   const handleChangeEmail = (e) => {
-    setEmail(e.target.value);
+      setEmail(e.target.value);
   }
 
   const handleChangePassword = (e) => {
-    setPassword(e.target.value);
+      setPassword(e.target.value);
   }
 
-  
+  useEffect( () => {
+      if (localStorage.getItem('user-info')) {
+        navigate("/")
+      }
+  })
+
+  const clickHandler = () => {
+      let item = {email, password}
+      var myHeaders = new Headers();
+      myHeaders.append("Authorization", "Basic " + btoa(email + ":" + password));
+
+      var raw = item;
+
+      var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow',
+      };
+
+      let result = fetch("http://127.0.0.1:5000/login", requestOptions)
+          .then((response) => {
+              // response.json()
+              
+              // console.log(response)
+              })
+          .catch((error) => {
+              alert('Incorrect email address or password.')
+              console.log(error)});
+      // localStorage.setItem('user-info', result)
+      console.log(result)
+      
+  }
   
   return (
     <MDBContainer className="p-5 my-5 h-custom">
@@ -53,7 +87,7 @@ function Login() {
           </div>
 
           <div className='text-center text-md-start mt-4 pt-5'>
-            <MDBBtn className="mb-0 px-5" size='md'>Login</MDBBtn>
+            <MDBBtn onClick={clickHandler} className="mb-0 px-5" size='md'>Login</MDBBtn>
             <p className="small fw-bold mt-2 pt-1 mb-2">Don't have an account? <a href="/register-customer" className="link-danger">Register</a></p>
           </div>
 

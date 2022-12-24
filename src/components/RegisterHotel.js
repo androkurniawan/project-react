@@ -4,7 +4,7 @@ function RegisterHotel() {
     return (
         <section>
             <div id="background-image">
-            <div class="container" style={{paddingTop: "1.5em"}}><p></p></div>
+            <div className="container" style={{paddingTop: "1.5em"}}><p></p></div>
             <div className="container text-center">
                 <h1><b>One step more... Complete your data!</b></h1>
             </div>
@@ -17,43 +17,43 @@ function RegisterHotel() {
                             <span className="border border-warning"></span>
                             <div className="col-md-4">
                             <label className="form-label"><b>Hotel Name</b></label>
-                            <input id="hotelName" type="text" className="form-control form-control-sm" placeholder="Enter your hotel name" autocomplete="off" />
+                            <input id="hotelName" type="text" className="form-control form-control-sm" placeholder="Enter your hotel name" autoComplete="off" />
                             </div>
 
                             <div className="col-md-4">
                             <label className="form-label"><b>Username</b></label>
-                            <input id="hotelUsername" type="text" className="form-control form-control-sm" placeholder="Create username for your hotel" autocomplete="off" />
+                            <input id="hotelUsername" type="text" className="form-control form-control-sm" placeholder="Create username for your hotel" autoComplete="off" />
                             </div>
 
                             <div className="col-md-4">
                             <label className="form-label"><b>Email</b></label>
-                            <input id="hotelEmail" type="email" className="form-control form-control-sm" placeholder="Enter your email" autocomplete="off" />
+                            <input id="hotelEmail" type="email" className="form-control form-control-sm" placeholder="Enter your email" autoComplete="off" />
                             </div>
 
                             <div className="col-md-6">
                             <label className="form-label"><b>Password</b></label>
-                            <input id="hotelPassword" type="password" className="form-control form-control-sm" placeholder="Enter your password" autocomplete="off" />
+                            <input id="hotelPassword" type="password" className="form-control form-control-sm" placeholder="Enter your password" autoComplete="off" />
                             <label className="form-text">Make the unpredictable password</label>
                             </div>
 
                             <div className="col-md-6">
                             <label className="form-label"><b>Confirm Password</b></label>
-                            <input id="hotelPasswordConfirm" type="password" className="form-control form-control-sm" placeholder="Enter your password again" autocomplete="off" />
+                            <input id="hotelPasswordConfirm" type="password" className="form-control form-control-sm" placeholder="Enter your password again" autoComplete="off" />
                             </div>
 
                             <div className="col-md-4">
                             <label className="form-label"><b>Address</b></label>
-                            <input id="hotelAddress" type="text" className="form-control form-control-sm" placeholder="The address of your hotel" autocomplete="off" />
+                            <input id="hotelAddress" type="text" className="form-control form-control-sm" placeholder="The address of your hotel" autoComplete="off" />
                             </div>
 
                             <div className="col-md-4">
                                 <label className="form-label"><b>City</b></label>
-                                <input id="hotelCity" type="text" className="form-control form-control-sm" placeholder="The city of your hotel location" autocomplete="off" />
+                                <input id="hotelCity" type="text" className="form-control form-control-sm" placeholder="The city of your hotel location" autoComplete="off" />
                                 </div>
 
                             <div className="col-4">
                             <label className="form-label"><b>Phone Number</b></label>
-                            <input id="hotelPhone" type="text" className="form-control form-control-sm" placeholder="Your hotel phone number" autocomplete="off" />
+                            <input id="hotelPhone" type="text" className="form-control form-control-sm" placeholder="Your hotel phone number" autoComplete="off" />
                             </div>
                         
                         <div className="row g-3" >
