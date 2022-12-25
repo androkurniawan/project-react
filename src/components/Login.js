@@ -15,38 +15,41 @@ function Login() {
       setPassword(e.target.value);
   }
 
-  useEffect( () => {
+  useEffect(() => {
       if (localStorage.getItem('user-info')) {
-        navigate("/")
+        navigate("/");
       }
   })
 
   const clickHandler = () => {
-      let item = {email, password}
       var myHeaders = new Headers();
       myHeaders.append("Authorization", "Basic " + btoa(email + ":" + password));
-
-      var raw = item;
 
       var requestOptions = {
           method: 'POST',
           headers: myHeaders,
-          body: raw,
-          redirect: 'follow',
+          redirect: 'follow'
       };
 
-      let result = fetch("http://127.0.0.1:5000/login", requestOptions)
-          .then((response) => {
-              // response.json()
-              
-              // console.log(response)
-              })
+      fetch("http://127.0.0.1:5000/login", requestOptions)
+          .then((response) => response.json())
+          .then((result) => {
+              if (result.message === 'success' && result.user === 'customer') {
+                  alert("Berhasil sebagai CUSTOMER.")
+                  localStorage.setItem('user-info', result)
+                  window.location.href = "/"
+              } else if (result.message === 'success' && result.user === 'hotel') {
+                  alert("Berhasil sebagai HOTEL.")  
+                  localStorage.setItem('user-info', result)
+                  window.location.href = "/"
+              }
+              return alert("GAGAL MASUK, tapi Berhasil fetching.")
+          })
           .catch((error) => {
-              alert('Incorrect email address or password.')
-              console.log(error)});
-      // localStorage.setItem('user-info', result)
-      console.log(result)
-      
+              alert('GAGAL FETCHING. Incorrect email address or password.')
+              console.log(error)
+          });
+          
   }
   
   return (
