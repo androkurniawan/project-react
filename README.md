@@ -1,1 +1,1 @@
-Migrasi ke TSX
+Migrasi ke JSX
