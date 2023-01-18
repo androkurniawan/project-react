@@ -1,7 +1,4 @@
 import React, {useEffect, useState} from 'react';
-// import MostVisit1 from '../assets/img/mostVisit1.jpg';
-// import MostVisit2 from '../assets/img/mostVisit2.jpg';
-// import MostVisit3 from '../assets/img/mostVisit3.webp';
 
 function MostVisitedHotels() {
     const [visit, setVisit] = useState([]);
@@ -18,13 +15,13 @@ function MostVisitedHotels() {
         fetchData();
     }, [])
 
-    const hotels = visit.map(y => {
+    const hotels = visit.map((y, index) => {
         return (
             <div className="col" key={y.id}>
                 <div className="card shadow-sm">
-                    <img src={require(`../assets/img/mostVisit3.jpg`)} width="100%" height="300" className="d-block w-100" alt=""></img>
+                    <img src={require(`../assets/img/mostVisit${index+1}.jpg`)} width="100%" height="300" className="d-block w-100" alt=""></img>
                     <div className="card-body">
-                        <h3>City: {y.hotel_city}</h3>
+                        <h3 className="mt-2">City: {y.hotel_city}</h3>
                         <h4>{y.hotel_name}</h4>
                         <p>Total booking: {y.total_booking}</p>
                     <div className="d-flex justify-content-between align-items-center">

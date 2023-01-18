@@ -6,12 +6,13 @@ import WhyOracle1 from '../assets/img/whyoracle1.png';
 import WhyOracle2 from '../assets/img/whyoracle2.png';
 import WhyOracle3 from '../assets/img/whyoracle3.png';
 import WhyOracle4 from '../assets/img/whyoracle4.png';
-import Rating1 from '../assets/img/rating1.jpg';
-import Rating2 from '../assets/img/rating2.jpg';
-import Rating3 from '../assets/img/rating3.jpg';
+// import Rating1 from '../assets/img/rating1.jpg';
+// import Rating2 from '../assets/img/rating2.jpg';
+// import Rating3 from '../assets/img/rating3.jpg';
 import {Carousel} from 'react-bootstrap';
 import MostVisitedHotels from './MostVisitedHotels';
 import TopUsers from './TopUsers';
+import HighestRatedHotel from './HighestRatedHotel';
 
 function SearchingHotel() {
     const [input, setInput] = useState({
@@ -21,13 +22,26 @@ function SearchingHotel() {
     })
 
     const handleChange = (e) => {
-        setInput.city = e.target.value;
-        console.log(input.city);
+        setInput(prevInput => {
+            return {...prevInput, [e.target.name]: e.target.value}}
+        );
     }
 
-    const handleSubmit = (e) => {
+    const checkingEntry = (e) => {
         e.preventDefault();
+        if (!input.city || !input.checkin || !input.checkout) {
+            alert("Any field can not be empty.")
+        } else if (input.checkin > input.checkout) {
+            alert("Checkout date must be after checkin date.")
+        } else handleSubmit()
+    }
 
+    const handleSubmit = () => {
+        // e.preventDefault();
+        localStorage.setItem('city', input.city)
+        localStorage.setItem('checkin', input.checkin)
+        localStorage.setItem('checkout', input.checkout)
+        window.location.href = "/searching"
     }
 
     return (
@@ -37,7 +51,7 @@ function SearchingHotel() {
 
                     <div className="col-lg-6 align-self-center">
                         <div>
-                            <form className="row g-3" onSubmit={handleSubmit} id="searchingForm">
+                            <form className="row g-3" onSubmit={checkingEntry} id="searchingForm">
                                 <div><h2>Find the <span style={{color:"#ffc300"}}>best</span> hotel for you.</h2></div>
                                 
                                 <label htmlFor="city" className="form-label mb-0">Destination City</label>
@@ -53,7 +67,7 @@ function SearchingHotel() {
                                         <span className="input-group-text">
                                             <span className="bi-person"><i className="fa-regular fa-calendar-check"></i></span>
                                         </span>
-                                        <input type="date" className="form-control" id="checkin" name="checkin" />
+                                        <input onChange={handleChange} type="date" className="form-control" id="checkin" name="checkin" />
                                     </div>       
                                 </div>
 
@@ -63,8 +77,8 @@ function SearchingHotel() {
                                         <span className="input-group-text">
                                             <span className="bi-person"><i className="fa-solid fa-calendar-check"></i></span>
                                         </span>
-                                        <input type="date" className="form-control" id="checkout" name="checkout" value="datetimenow" />
-                                    </div>       
+                                        <input onChange={handleChange} type="date" className="form-control" id="checkout" name="checkout" />
+                                    </div>
                                 </div>
                                 
                                 <button type="submit" className="btn btn-warning">Search</button>
@@ -164,64 +178,7 @@ function SearchingHotel() {
 
         <TopUsers />
 
-            <section id="horizontalLine">
-                <div className="divider mb-0"><span></span><span>Highest Rated Hotels</span><span></span></div>
-                <div className="container text-center mb-5"><p>The hotel with the highest rating is always be a consideration.</p></div>
-
-                <main>
-                    <div className="container bg-light card offset-md-1 mb-4">
-                    <div className="row align-items-md-stretch">
-                        <div className="col-md-3">
-                        <div className="h-100 p-3 bg-light rounded-3">
-                            <img src={Rating1} alt="" width="100%" />
-                        </div>
-                        </div>
-                        <div className="col-md-3 align-self-center">
-                        <div>
-                            <h2 id="rating1Hotel"> </h2>
-                            <h3 id="rating1City"> </h3>
-                            <h4 id="rating1Rating"> </h4>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-
-                    <div className="container bg-light card offset-md-1 mb-4">
-                        <div className="row align-items-md-stretch">
-                            <div className="col-md-4"></div>
-                        <div className="col-md-3 align-self-center">
-                            <div>
-                            <h2 id="rating2Hotel"> </h2>
-                            <h3 id="rating2City"> </h3>
-                            <h4 id="rating2Rating"> </h4>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className="h-100 p-3 bg-light rounded-3">
-                            <img src={Rating2} width="100%" alt="" />
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-
-                    <div className="container bg-light card offset-md-1 mb-4">
-                        <div className="row align-items-md-stretch">
-                        <div className="col-md-3">
-                            <div className="h-100 p-3 bg-light rounded-3">
-                            <img src={Rating3} alt="" width="100%" />
-                            </div>
-                        </div>
-                        <div className="col-md-3 align-self-center">
-                            <div>
-                            <h2 id="rating3Hotel"> </h2>
-                            <h3 id="rating3City"> </h3>
-                            <h4 id="rating3Rating"> </h4>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </main>
-            </section>
+        <HighestRatedHotel />
 
         </section>
 

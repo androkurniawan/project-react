@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {MDBContainer, MDBCol, MDBRow, MDBBtn, MDBIcon, MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import {useNavigate} from 'react-router-dom';
+import {useCookies} from 'react-cookie';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(['username'])
 
   const handleChangeEmail = (e) => {
       setEmail(e.target.value);
@@ -16,7 +18,7 @@ function Login() {
   }
 
   useEffect(() => {
-      if (localStorage.getItem('user-info')) {
+      if (document.cookie) {
         navigate("/");
       }
   })
@@ -35,21 +37,22 @@ function Login() {
           .then((response) => response.json())
           .then((result) => {
               if (result.message === 'success' && result.user === 'customer') {
-                  alert("Berhasil sebagai CUSTOMER.")
-                  localStorage.setItem('user-info', result)
+                  alert("Login success as Customer.")
+                  localStorage.setItem('role', result.user)
+                  setCookie("username", result.token, 7)
                   window.location.href = "/"
               } else if (result.message === 'success' && result.user === 'hotel') {
-                  alert("Berhasil sebagai HOTEL.")  
-                  localStorage.setItem('user-info', result)
+                  alert("Login success as Hotel.")
+                  localStorage.setItem('role', result.user)
+                  setCookie("username", result.token, 7)
                   window.location.href = "/"
               }
               return alert("GAGAL MASUK, tapi Berhasil fetching.")
           })
           .catch((error) => {
-              alert('GAGAL FETCHING. Incorrect email address or password.')
+              alert('Incorrect email address or password.')
               console.log(error)
           });
-          
   }
   
   return (
@@ -81,8 +84,11 @@ function Login() {
             <p className="text-center fw-normal mx-5 mb-0">or</p>
           </div>
           
-          <MDBInput onChange={handleChangeEmail} wrapperClass='mb-3' label='Email address' id='formControlLg' type='email' size="md"/>
-          <MDBInput onChange={handleChangePassword} wrapperClass='mb-3' label='Password' id='formControlLg' type='password' size="md"/>
+          <label>Username</label>
+          <MDBInput onChange={handleChangeEmail} wrapperClass='mb-3' id='formControlLg' type='email' size="md"/>
+
+          <label>Password</label>
+          <MDBInput onChange={handleChangePassword} wrapperClass='mb-3' id='formControlLg' type='password' size="md"/>
 
           <div className="d-flex justify-content-between mb-4">
             <MDBCheckbox name='flexCheck' value='' id='flexCheckDefault' label='Remember me' />

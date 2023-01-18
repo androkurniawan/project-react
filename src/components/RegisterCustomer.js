@@ -1,7 +1,87 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {MDBBtn, MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBInput, MDBIcon} from 'mdb-react-ui-kit';
 
 function RegisterCustomer() {
+  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');
+
+  const handleChangeName = (e) => {
+    setName(e.target.value);
+  }
+  
+  const handleChangeUsername = (e) => {
+    setUsername(e.target.value);
+  }
+
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  }
+
+  const handleChangePhone = (e) => {
+    setPhone(e.target.value);
+  }
+
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  }
+
+  const handleChangeConfirmPassword = (e) => {
+    setConfirm(e.target.value)
+  }
+
+  const handleSignUp = () => {
+    var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            customer_name: name,
+            username: username,
+            password: password,
+            customer_email: email,
+            customer_phone: phone,
+        });
+
+        var requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: raw,
+            redirect: "follow",
+        };
+
+        if (
+            name === "" ||
+            username === "" ||
+            password === "" ||
+            confirm === "" ||
+            email === "" ||
+            phone === ""
+        ) {
+            return alert("A field can not be empty.");
+        } 
+        
+        else {
+            fetch("http://127.0.0.1:5000/customer", requestOptions)
+            .then((response) => response.text())
+            .then((data) => {
+                if (data !== "False"){
+                    alert("Success create an account. Please login to continue.")
+                    window.location.href = "/login"
+                } else {
+                    alert("Failed create a new account because the username was taken. Try again with another username.")
+                }                
+            })
+            .catch(error => {
+                alert("GAGAL FETCHING.")
+                console.log('error', error)
+              }
+            );
+        }
+  }
+
   return (
     <MDBContainer className='p-4'>
 
@@ -23,20 +103,29 @@ function RegisterCustomer() {
 
               <MDBRow>
                 <MDBCol col='6'>
-                  <MDBInput wrapperClass='mb-4' label='Name' id='form1' type='text'/>
+                <label>Name</label>
+                  <MDBInput onChange={handleChangeName} wrapperClass='mb-4' type='text'/>
                 </MDBCol>
 
                 <MDBCol col='6'>
-                  <MDBInput wrapperClass='mb-4' label='Username' id='form1' type='text'/>
+                <label>Username</label>
+                  <MDBInput onChange={handleChangeUsername} wrapperClass='mb-4' type='text'/>
                 </MDBCol>
               </MDBRow>
 
-              <MDBInput wrapperClass='mb-2' label='Email' id='form1' type='email'/>
-              <MDBInput wrapperClass='mb-2' label='Phone' id='form1' type='text'/>
-              <MDBInput wrapperClass='mb-2' label='Password' id='form1' type='password'/>
-              <MDBInput wrapperClass='mb-2' label='Confirm Password' id='form1' type='password'/>
+              <label>Email</label>
+              <MDBInput onChange={handleChangeEmail} wrapperClass='mb-2' type='email'/>
 
-              <MDBBtn className='w-100 mb-2' size='md'>sign up</MDBBtn>
+              <label>Phone</label>
+              <MDBInput onChange={handleChangePhone} wrapperClass='mb-2' type='text'/>
+
+              <label>Password</label>
+              <MDBInput onChange={handleChangePassword} wrapperClass='mb-2' type='password'/>
+
+              <label>Confirm Password</label>
+              <MDBInput onChange={handleChangeConfirmPassword} wrapperClass='mb-4' type='password'/>
+
+              <MDBBtn onClick={handleSignUp} className='w-100 mb-2' size='md'>Sign Up</MDBBtn>
 
               <div className="text-center">
 
